@@ -1,26 +1,259 @@
-@import "tailwindcss";
-
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --saffron: #E0651E;
+  --saffron-2: #F0823A;
+  --saffron-deep: #B84915;
+  --green: #1F5A2E;
+  --green-2: #2D7A45;
+  --ink: #1A1108;
+  --ink-2: #3A2A1C;
+  --ink-3: #6A5440;
+  --paper: #F4EBD7;
+  --paper-2: #EADFC4;
+  --paper-3: #DBCBA5;
+  --blood: #8B1A1A;
+  --gold: #C9A227;
+
+  /* Typography variables mapped from layout.tsx */
+  --display: var(--font-bowlby), 'Impact', sans-serif;
+  --condensed: var(--font-oswald), 'Arial Narrow', sans-serif;
+  --sans: var(--font-inter), -apple-system, system-ui, sans-serif;
+  --mono: var(--font-mono), ui-monospace, monospace;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html, body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  -webkit-font-smoothing: antialiased;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+  position: relative;
+  min-height: 100vh;
+}
+
+a { color: inherit; text-decoration: none; }
+
+button, input, textarea { font: inherit; }
+button { cursor: pointer; border: none; background: none; }
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 clamp(16px, 5vw, 56px);
+}
+
+/* Typography utilities */
+.display {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(44px, 6vw, 80px);
+  line-height: 0.92;
+  letter-spacing: -0.005em;
+  color: var(--ink);
+}
+
+.eyebrow {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 14px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--saffron-deep);
+  margin-bottom: 22px;
+}
+
+.lead {
+  font-family: var(--sans);
+  font-size: 18px;
+  line-height: 1.55;
+  color: var(--ink-2);
+  max-width: 560px;
+  margin-top: 24px;
+}
+
+/* UI Elements */
+.btn-primary {
+  background: var(--saffron-deep);
+  color: var(--paper);
+  font-family: var(--condensed);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 18px 32px;
+  border: 3px solid var(--ink);
+  box-shadow: 6px 6px 0 var(--ink);
+  transition: all 0.15s;
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.btn-primary:hover {
+  transform: translate(3px, 3px);
+  box-shadow: 3px 3px 0 var(--ink);
+}
+
+.btn-secondary {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--condensed);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 18px 32px;
+  border: 3px solid var(--ink);
+  box-shadow: 6px 6px 0 var(--ink);
+  transition: all 0.15s;
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.btn-secondary:hover {
+  background: var(--paper-2);
+  transform: translate(3px, 3px);
+  box-shadow: 3px 3px 0 var(--ink);
+}
+
+.card-subject {
+  background: var(--paper-2);
+  border: 3px solid var(--ink);
+  box-shadow: 8px 8px 0 var(--ink);
+  padding: 32px;
+  transition: all 0.2s;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+}
+
+.card-subject:hover {
+  transform: translate(-4px, -4px);
+  box-shadow: 12px 12px 0 var(--ink);
+  background: var(--saffron);
+}
+
+.card-subject:hover .subject-title {
+  color: var(--ink);
+}
+
+.card-subject:hover .subject-code {
+  color: var(--paper);
+}
+
+.subject-code {
+  font-family: var(--mono);
+  font-size: 14px;
+  letter-spacing: 0.2em;
+  color: var(--ink-3);
+  font-weight: 700;
+}
+
+.subject-title {
+  font-family: var(--display);
+  font-size: 32px;
+  line-height: 1.1;
+  color: var(--ink);
+}
+
+/* Loader Styles (overflow.sui.io inspired) */
+.loader-wrapper {
+  position: fixed;
+  inset: 0;
+  background-color: var(--paper);
+  color: var(--ink);
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.6s cubic-bezier(0.85, 0, 0.15, 1);
+}
+
+.loader-wrapper.hidden {
+  transform: translateY(-100%);
+  pointer-events: none;
+}
+
+.loader-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+}
+
+.loader-icon {
+  width: 120px;
+  height: 120px;
+  color: var(--saffron);
+  animation: spin 4s linear infinite;
+}
+
+.loader-text-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--mono);
+  font-size: 16px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--paper-2);
+}
+
+.loader-percentage {
+  font-family: var(--display);
+  font-size: 32px;
+  color: var(--saffron-2);
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes pulseOpacity {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.pulsing {
+  animation: pulseOpacity 1.5s ease-in-out infinite;
+}
+
+@keyframes ticker {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@media (max-width: 768px) {
+  .btn-primary, .btn-secondary {
+    padding: 12px 20px;
+    font-size: 12px;
+  }
+  .card-subject {
+    padding: 24px;
+    box-shadow: 4px 4px 0 var(--ink);
+  }
+  .card-subject:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 var(--ink);
+  }
+  .at-a-glance {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.at-a-glance {
+  width: 100%;
+  max-width: 320px;
 }

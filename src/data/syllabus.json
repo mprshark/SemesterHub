@@ -3,6 +3,7 @@
     "id": "csu083",
     "name": "Analysis and Design of Algorithms",
     "code": "CSU083",
+    "pdf": "Analysis and Design of Algorithms.pdf",
     "units": [
       {
         "title": "Unit 1: Introduction",
@@ -51,6 +52,7 @@
     "id": "csu357",
     "name": "Database Management System",
     "code": "CSU357",
+    "pdf": "Database Management System.pdf",
     "units": [
       {
         "title": "Unit 1: Introduction to Database System",
@@ -109,6 +111,7 @@
     "id": "csu2215",
     "name": "Introduction to Git and Github",
     "code": "CSU2215",
+    "pdf": "Introduction to Git and Github.pdf",
     "units": [
       {
         "title": "Unit A: Introduction to Version Control and Git Basics",
@@ -161,6 +164,7 @@
     "id": "csu1162",
     "name": "Python Application Programming",
     "code": "CSU1162",
+    "pdf": "Python Application Programming.pdf",
     "units": [
       {
         "title": "Unit 1: Introduction to Python Programming",

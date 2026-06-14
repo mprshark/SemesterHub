@@ -1,36 +1,36 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# SemesterHub 
 
-## Getting Started
+> **A Neobrutalist web app built for students to share notes, view syllabi, and panic together in real-time.**
 
-First, run the development server:
+[**View Live App**](https://your-cloudflare-link.pages.dev) <!-- Replace this with your actual Cloudflare link -->
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+SemesterHub is a fully responsive, community-driven platform designed specifically to centralize class resources. It replaces scattered WhatsApp groups and missing PDFs with a single source of truth for syllabi, past papers, lab practicals, and community-uploaded notes.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## ✨ Features
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- 📚 **Unified Syllabus Data:** Instant access to syllabus breakdowns, exam grading weights, and recommended textbooks for core subjects.
+- 🔍 **Real-Time Search:** Instantly filter subjects by course code or name without refreshing the page.
+- 📤 **Community Notes:** Securely upload notes and PDFs directly to the community storage bucket for others to download.
+- 💬 **Anonymous Panic Chat:** A real-time, anonymous floating chat room powered by WebSockets to let students vent and coordinate during exam seasons.
+- 🎨 **Neobrutalist Design:** High contrast, thick borders, loud colors, and fluid `clamp()` responsiveness. Built completely with Vanilla CSS.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🛠️ Tech Stack
 
-## Learn More
+- **Frontend:** Next.js (App Router), React, TypeScript
+- **Backend & Database:** Supabase (PostgreSQL)
+- **Realtime & Storage:** Supabase Realtime WebSockets & CDN Storage
+- **Hosting:** Cloudflare Pages
+- **Styling:** Vanilla CSS Variables (No Tailwind)
 
-To learn more about Next.js, take a look at the following resources:
+## 🤝 Open Source & Contributing
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+SemesterHub is completely open-source! 
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Since this was built for the students, by the students, contributions are highly encouraged. If you find a bug, want to add a new feature, or want to contribute a new syllabus for another semester, feel free to:
+1. Fork the repository
+2. Create a new branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes
+4. Open a Pull Request
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+*Built for the lazy, by the lazy.*

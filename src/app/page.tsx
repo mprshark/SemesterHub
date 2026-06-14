@@ -1,65 +1,136 @@
-import Image from "next/image";
+"use client";
+
+import Link from 'next/link';
+import Image from 'next/image';
+import Loader from '@/components/Loader';
+import { syllabusData } from '@/data/syllabus';
+import { useState } from 'react';
 
 export default function Home() {
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const filteredSubjects = syllabusData.filter(subject => 
+    subject.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
+    subject.code.toLowerCase().includes(searchQuery.toLowerCase())
+  );
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
+    <>
+      <Loader />
+      
+      {/* Top Strip */}
+      <div className="top-strip" style={{
+        background: 'var(--ink)',
+        color: 'var(--paper)',
+        fontFamily: 'var(--mono)',
+        fontSize: '11px',
+        letterSpacing: '0.14em',
+        textTransform: 'uppercase',
+        padding: '9px 0',
+        overflow: 'hidden',
+        borderBottom: '3px solid var(--ink)'
+      }}>
+        <div style={{ display: 'flex', gap: '56px', whiteSpace: 'nowrap', width: 'max-content', animation: 'ticker 20s linear infinite' }}>
+          <span>✦ SYLLABUS ✦ NOTES ✦ CHEATSHEETS ✦ PYQ'S ✦ RESOURCES ✦ SYLLABUS ✦ NOTES ✦ CHEATSHEETS ✦ PYQ'S ✦ RESOURCES ✦</span>
+          <span>✦ SYLLABUS ✦ NOTES ✦ CHEATSHEETS ✦ PYQ'S ✦ RESOURCES ✦ SYLLABUS ✦ NOTES ✦ CHEATSHEETS ✦ PYQ'S ✦ RESOURCES ✦</span>
+        </div>
+      </div>
+
+      <main className="container" style={{ paddingBottom: '120px' }}>
+        <header style={{ paddingTop: '80px', paddingBottom: '60px', borderBottom: '3px solid var(--ink)', marginBottom: '80px', textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+          <Image 
+            src="/logo.png" 
+            alt="SemesterHub Logo" 
+            width={180} 
+            height={180} 
+            style={{ 
+              width: 'clamp(100px, 20vw, 180px)',
+              height: 'auto',
+              border: '4px solid var(--ink)', 
+              boxShadow: '8px 8px 0 var(--ink)', 
+              marginBottom: 'clamp(16px, 4vw, 32px)',
+              borderRadius: '8px',
+              background: 'var(--paper)'
+            }} 
+            priority
+          />
+          <h1 className="display">
+            SEMESTER<em style={{ color: 'var(--green)', fontStyle: 'italic', fontFamily: 'Georgia, serif' }}>HUB</em>
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+          <p className="lead" style={{ marginTop: '24px' }}>
+            Access your question papers, syllabus breakdowns, and class notes. Stay lazy, stay updated.
           </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
+
+          <div style={{ marginTop: '48px', width: '100%', maxWidth: '640px', position: 'relative' }}>
+            <input 
+              type="text" 
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Search subjects, notes, past papers..." 
+              style={{
+                width: '100%',
+                padding: 'clamp(12px, 3vw, 20px) clamp(100px, 25vw, 120px) clamp(12px, 3vw, 20px) clamp(16px, 4vw, 24px)',
+                fontFamily: 'var(--sans)',
+                fontSize: 'clamp(14px, 4vw, 18px)',
+                border: '3px solid var(--ink)',
+                boxShadow: 'clamp(3px, 1vw, 6px) clamp(3px, 1vw, 6px) 0 var(--ink)',
+                outline: 'none',
+                background: 'var(--paper)',
+                color: 'var(--ink)'
+              }}
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+            <button style={{
+              position: 'absolute',
+              right: 'clamp(6px, 2vw, 12px)',
+              top: '50%',
+              transform: 'translateY(-50%)',
+              background: 'var(--saffron)',
+              border: '2px solid var(--ink)',
+              padding: 'clamp(6px, 1.5vw, 8px) clamp(10px, 3vw, 16px)',
+              fontFamily: 'var(--condensed)',
+              fontWeight: 700,
+              textTransform: 'uppercase',
+              letterSpacing: '0.1em',
+              fontSize: 'clamp(12px, 3vw, 14px)'
+            }}>Search</button>
+          </div>
+        </header>
+
+
+        <section>
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '60px' }}>
+            <h2 className="display" style={{ fontSize: 'clamp(32px, 4vw, 56px)', textAlign: 'center' }}>SUBJECTS</h2>
+          </div>
+
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 320px), 1fr))', gap: 'clamp(16px, 4vw, 32px)' }}>
+            {filteredSubjects.length > 0 ? filteredSubjects.map((subject) => (
+              <Link key={subject.id} href={`/subject/${subject.id}`} className="card-subject">
+                <div className="subject-code">{subject.code}</div>
+                <h3 className="subject-title">{subject.name}</h3>
+                <div style={{ marginTop: 'auto', paddingTop: '32px' }}>
+                  <span style={{ 
+                    fontFamily: 'var(--condensed)', 
+                    fontSize: '12px', 
+                    fontWeight: 600, 
+                    letterSpacing: '0.1em', 
+                    textTransform: 'uppercase',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '8px',
+                    borderBottom: '2px solid currentColor',
+                    paddingBottom: '2px'
+                  }}>
+                    View Details &rarr;
+                  </span>
+                </div>
+              </Link>
+            )) : (
+              <div style={{ gridColumn: '1 / -1', textAlign: 'center', padding: '40px', fontFamily: 'var(--sans)', color: 'var(--ink-2)' }}>
+                <p>No subjects found matching "{searchQuery}". Stop making things up.</p>
+              </div>
+            )}
+          </div>
+        </section>
       </main>
-    </div>
+    </>
   );
 }
