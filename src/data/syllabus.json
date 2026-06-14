@@ -1,0 +1,210 @@
+[
+  {
+    "id": "csu083",
+    "name": "Analysis and Design of Algorithms",
+    "code": "CSU083",
+    "units": [
+      {
+        "title": "Unit 1: Introduction",
+        "topics": [
+          "Growth of Functions, Summations",
+          "Algorithm Design Paradigms",
+          "Sorting in Linear Time (Counting sort, Radix Sort, Bucket Sort)",
+          "Medians and Order Statistics",
+          "Disjoint Set operations, Linked List representation, Disjoint set forests"
+        ]
+      },
+      {
+        "title": "Unit 2: Approach",
+        "topics": [
+          "Matrix Chain Multiplication",
+          "Strassen’s algorithm for matrix multiplication",
+          "LCS (Longest Common Subsequence)",
+          "Optimal Binary Search Tree",
+          "General Greedy approach Vs Dynamic Programming approach",
+          "Case studies: Knapsack problem, Huffman Coding Problem"
+        ]
+      },
+      {
+        "title": "Unit 3: Graphs",
+        "topics": [
+          "Representation of Graphs, Breadth First Search, Depth First Search",
+          "Topological Sort, Strongly Connected Components",
+          "Algorithms of Kruskal’s and Prim’s",
+          "Dijkstra’s and Bellman ford algorithm",
+          "All pair shortest path, Floyd Warshall Algorithm"
+        ]
+      },
+      {
+        "title": "Unit 4: Algorithm",
+        "topics": [
+          "String Matching",
+          "Naïve String Matching Algorithm",
+          "Rabin Karp Algorithm",
+          "String Matching with Finite Automata",
+          "Knuth Morris Pratt Algorithm"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "csu357",
+    "name": "Database Management System",
+    "code": "CSU357",
+    "units": [
+      {
+        "title": "Unit 1: Introduction to Database System",
+        "topics": [
+          "Introduction to Database and DBMS",
+          "Database System Architecture",
+          "Database users and their roles",
+          "Instances and Schemas, Data Models",
+          "Conceptual-Logical-Physical Data Modelling",
+          "Data Independence, Advantages and Disadvantages of DBMS"
+        ]
+      },
+      {
+        "title": "Unit 2: E-R modeling Data Base Design",
+        "topics": [
+          "E-R model: Basic concepts, Design Issues, Mapping Constraints",
+          "Attributes and Entity sets, Relationships and Relationship sets",
+          "Keys, Entity-Relationship Diagram, Weak Entity Sets",
+          "Extended E-R features, Generalization and Aggregation",
+          "CODD’s 12 Rules"
+        ]
+      },
+      {
+        "title": "Unit 3: Relational Model & SQL",
+        "topics": [
+          "Structure of Relational Databases, Relational Algebra, Relational Calculus",
+          "Form of Basic SQL Query, Nested Queries",
+          "Aggregative Operators, NULL values",
+          "Logical operators, Outer Joins, Complex Integrity Constraints in SQL"
+        ]
+      },
+      {
+        "title": "Unit 4: Database Design Concepts",
+        "topics": [
+          "Schema refinement, Different anomalies in designing a Database",
+          "Decompositions, Problem related to decomposition",
+          "Functional Dependency",
+          "Normalization using functional dependencies (1NF, 2NF, 3NF & BCNF)",
+          "Lossless join decomposition, Dependency preserving Decomposition",
+          "Multi valued Dependencies, Join dependency, 4NF, 5NF"
+        ]
+      },
+      {
+        "title": "Unit 5: Transaction & Concurrency",
+        "topics": [
+          "Transaction-concepts, states, ACID property",
+          "Schedule, serializability of schedules",
+          "Concurrency control techniques - locking, timestamp",
+          "Deadlock handling",
+          "Recovery-log based recovery, shadow paging"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "csu2215",
+    "name": "Introduction to Git and Github",
+    "code": "CSU2215",
+    "units": [
+      {
+        "title": "Unit A: Introduction to Version Control and Git Basics",
+        "topics": [
+          "What is Version Control? Centralized vs. Distributed VCS",
+          "Overview of Git, Installing Git, Git Configuration",
+          "Git Workflow Basics, initializing a Repository",
+          "Understanding .git directory",
+          "Staging and Committing Files",
+          "Checking Status and Logs, Viewing History and Differences",
+          "Git Help Commands"
+        ]
+      },
+      {
+        "title": "Unit B: Branching, Merging, and Conflict Resolution",
+        "topics": [
+          "Creating and Switching Branches, Viewing Branches",
+          "Merging Branches, Fast-forward and Three-way Merge",
+          "Merge Conflicts and Their Resolution",
+          "Deleting Branches, Using Tags",
+          "Rebasing Basics",
+          "Undoing Changes: reset, revert, checkout"
+        ]
+      },
+      {
+        "title": "Unit C: Remote Repositories and GitHub Basics",
+        "topics": [
+          "What is GitHub? Creating GitHub Account",
+          "Repositories on GitHub, Pushing to GitHub",
+          "Cloning and Forking Repositories, Pulling Updates",
+          "Adding Collaborators, SSH Key Setup",
+          "GitHub Desktop (optional)",
+          "Using .gitignore and README files, GitHub Pages Basics"
+        ]
+      },
+      {
+        "title": "Unit D: Collaboration and Real-World GitHub Workflows",
+        "topics": [
+          "Pull Requests: Creating, Reviewing, and Merging",
+          "Issue Tracking and Labels, Milestones and Projects",
+          "Contributing to Open-Source Projects",
+          "Basic CI/CD Introduction",
+          "Repository Insights and Metrics, Real-world Use Cases",
+          "Mini Projects: Collaborative Repositories, Project Management using GitHub"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "csu1162",
+    "name": "Python Application Programming",
+    "code": "CSU1162",
+    "units": [
+      {
+        "title": "Unit 1: Introduction to Python Programming",
+        "topics": [
+          "Python Overview: History, Design Philosophy, and Use Cases",
+          "Setting Up Python: Installation and Development Environment",
+          "Basic Syntax: Variables, Data Types, Operators, and Expressions",
+          "Control Structures: Conditional Statements and Loops",
+          "Functions and Modules: Creating and Importing Functions",
+          "Python Standard Library: Overview of Common Modules"
+        ]
+      },
+      {
+        "title": "Unit 2: Data Structures, File I/O, and Exception Handling",
+        "topics": [
+          "Lists, Tuples, and Dictionaries: Collection Data Types in Python",
+          "String Manipulation and Regular Expressions",
+          "File Input and Output: Reading and Writing Files",
+          "Exception Handling: Handling Errors and Exceptions",
+          "Comprehensive Examples and Exercises"
+        ]
+      },
+      {
+        "title": "Unit 3: Object-Oriented Programming in Python",
+        "topics": [
+          "Introduction to Object-Oriented Programming (OOP) Concepts",
+          "Classes and Objects in Python",
+          "Inherance and Polymorphism",
+          "Encapsulation and Abstraction in Python",
+          "Advanced OOP Concepts",
+          "Practical OOP Examples and Projects"
+        ]
+      },
+      {
+        "title": "Unit 4: Python Libraries and Applications",
+        "topics": [
+          "Python Libraries for Web Development (e.g., Flask, Django)",
+          "Python Libraries for Data Science (e.g., NumPy, pandas, Matplotlib)",
+          "Introduction to Database Access with Python",
+          "Building Simple Web Applications with Python",
+          "Introduction to GUI Programming (e.g., Tkinter)",
+          "Overview of Python Frameworks and Tools (e.g., Django, Jupyter Notebook)"
+        ]
+      }
+    ]
+  }
+]
