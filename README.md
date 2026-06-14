@@ -1,36 +1,51 @@
-# SemesterHub 
+<div align="center">
+  <img src="./public/logo.png" alt="SemesterHub Logo" width="120" />
 
-> **A Neobrutalist web app built for students to share notes, view syllabi, and panic together in real-time.**
+  # SemesterHub
 
-[**View Live App**](https://your-cloudflare-link.pages.dev) <!-- Replace this with your actual Cloudflare link -->
+  **A high-performance, Neobrutalist class resource portal.**
 
-SemesterHub is a fully responsive, community-driven platform designed specifically to centralize class resources. It replaces scattered WhatsApp groups and missing PDFs with a single source of truth for syllabi, past papers, lab practicals, and community-uploaded notes.
+  [![Next.js](https://img.shields.io/badge/Next.js-15-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
+  [![Supabase](https://img.shields.io/badge/Supabase-Database-3ECF8E?style=for-the-badge&logo=supabase)](https://supabase.com/)
+  [![Cloudflare Pages](https://img.shields.io/badge/Cloudflare-Hosted-F38020?style=for-the-badge&logo=cloudflare)](https://pages.cloudflare.com/)
+  [![TypeScript](https://img.shields.io/badge/TypeScript-Ready-3178C6?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
 
-## ✨ Features
+  [**View Live Demonstration**](https://your-cloudflare-link.pages.dev) 
+  <br />
+</div>
 
-- 📚 **Unified Syllabus Data:** Instant access to syllabus breakdowns, exam grading weights, and recommended textbooks for core subjects.
-- 🔍 **Real-Time Search:** Instantly filter subjects by course code or name without refreshing the page.
-- 📤 **Community Notes:** Securely upload notes and PDFs directly to the community storage bucket for others to download.
-- 💬 **Anonymous Panic Chat:** A real-time, anonymous floating chat room powered by WebSockets to let students vent and coordinate during exam seasons.
-- 🎨 **Neobrutalist Design:** High contrast, thick borders, loud colors, and fluid `clamp()` responsiveness. Built completely with Vanilla CSS.
+<br />
 
-## 🛠️ Tech Stack
+## 📖 Overview
 
-- **Frontend:** Next.js (App Router), React, TypeScript
-- **Backend & Database:** Supabase (PostgreSQL)
-- **Realtime & Storage:** Supabase Realtime WebSockets & CDN Storage
-- **Hosting:** Cloudflare Pages
-- **Styling:** Vanilla CSS Variables (No Tailwind)
+SemesterHub is a robust, community-driven web application architected to centralize university class resources. It eliminates the friction of scattered messaging groups by providing a single source of truth for syllabi, past examination papers, laboratory practicals, and peer-reviewed class notes.
 
-## 🤝 Open Source & Contributing
+## ✨ Core Features
 
-SemesterHub is completely open-source! 
+- 📚 **Unified Syllabus Data Architecture:** Instant, structured access to unit breakdowns, examination grading weights, and recommended literature.
+- ⚡ **Real-Time Client Search:** Zero-latency client-side filtering by course code or nomenclature without page reloads.
+- ☁️ **Community Cloud Storage:** Secure, asynchronous file uploads allowing students to directly distribute PDFs via the Supabase CDN.
+- 💬 **Real-Time WebSocket Chat:** An anonymous, floating "Panic Chat" interface powered by Supabase Realtime subscriptions.
+- 🎨 **Neobrutalist Design System:** High-contrast aesthetics built entirely with Vanilla CSS variables and fluid typography (`clamp()`) for absolute mobile responsiveness.
 
-Since this was built for the students, by the students, contributions are highly encouraged. If you find a bug, want to add a new feature, or want to contribute a new syllabus for another semester, feel free to:
+## 🛠️ Technical Stack
+
+- **Framework:** [Next.js (App Router)](https://nextjs.org/) 
+- **Language:** [TypeScript](https://www.typescriptlang.org/)
+- **Backend Infrastructure:** [Supabase](https://supabase.com/) (PostgreSQL)
+- **Realtime & Storage:** Supabase Realtime WebSockets & Public CDN
+- **Deployment:** Cloudflare Pages
+
+## 🤝 Contributing
+
+SemesterHub operates under an open-source model. Contributions from the student community are highly encouraged. To contribute:
+
 1. Fork the repository
-2. Create a new branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes
-4. Open a Pull Request
+2. Create a feature branch (`git checkout -b feature/new-syllabus`)
+3. Commit your modifications
+4. Open a Pull Request for review
 
 ---
-*Built for the lazy, by the lazy.*
+<div align="center">
+  <i>Engineered for efficiency.</i>
+</div>
