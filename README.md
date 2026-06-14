@@ -5,6 +5,11 @@
 
   **A high-performance, Neobrutalist class resource portal.**
 
+  [![Next.js](https://img.shields.io/badge/Next.js-15-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
+  [![Supabase](https://img.shields.io/badge/Supabase-Database-3ECF8E?style=for-the-badge&logo=supabase)](https://supabase.com/)
+  [![Cloudflare Pages](https://img.shields.io/badge/Cloudflare-Hosted-F38020?style=for-the-badge&logo=cloudflare)](https://pages.cloudflare.com/)
+  [![TypeScript](https://img.shields.io/badge/TypeScript-Ready-3178C6?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
+
   [**View Live Demonstration**](https://your-cloudflare-link.pages.dev) 
   <br />
   
