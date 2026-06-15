@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Bowlby_One, Oswald, Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import ChatBox from "@/components/ChatBox";
+import ClientTracker from "@/components/ClientTracker";
 
 const bowlbyOne = Bowlby_One({
   weight: '400',
@@ -40,6 +41,7 @@ export default function RootLayout({
       className={`${bowlbyOne.variable} ${oswald.variable} ${inter.variable} ${jetbrainsMono.variable}`}
     >
       <body>
+        <ClientTracker />
         <div style={{
           background: 'var(--saffron)',
           color: 'var(--ink)',
@@ -66,8 +68,8 @@ export default function RootLayout({
           borderTop: '3px solid var(--ink)',
           background: 'var(--paper-2)'
         }}>
-          &copy; {new Date().getFullYear()} Pranshu Pathak. 
-          <br/>
+          &copy; {new Date().getFullYear()} Pranshu Pathak.
+          <br />
           Built for the lazy, by the lazy.
         </footer>
         <ChatBox />

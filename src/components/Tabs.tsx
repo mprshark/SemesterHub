@@ -9,6 +9,7 @@ type CommunityNote = {
   subject_id: string;
   file_name: string;
   file_url: string;
+  category: string;
   created_at: string;
 };
 
@@ -54,7 +55,7 @@ export default function ResourceTabs({ subject }: { subject: Subject }) {
 
     const { data: insertData, error: insertError } = await supabase
       .from('community_notes')
-      .insert([{ subject_id: subject.id, file_name: file.name, file_url: publicUrl }])
+      .insert([{ subject_id: subject.id, file_name: file.name, file_url: publicUrl, category: 'Notes' }])
       .select();
 
     if (insertData) {
@@ -67,6 +68,13 @@ export default function ResourceTabs({ subject }: { subject: Subject }) {
     setIsUploading(false);
     if (fileInputRef.current) fileInputRef.current.value = '';
   };
+
+  const notesList = communityNotes.filter(n => n.category === 'Notes' || !n.category);
+  const cheatSheetsList = communityNotes.filter(n => n.category === 'Cheat Sheets');
+  const pastPapersList = communityNotes.filter(n => n.category === 'Past Papers');
+  const labsList = communityNotes.filter(n => n.category === 'Lab / Practicals');
+  const projectsList = communityNotes.filter(n => n.category === 'Projects');
+  const booksList = communityNotes.filter(n => n.category === 'Books');
   
   const tabs = ['Syllabus', 'Notes', 'Past Papers', 'Lab / Practicals', 'Projects', 'Cheat Sheets', 'Books'];
 
@@ -158,9 +166,9 @@ export default function ResourceTabs({ subject }: { subject: Subject }) {
           <div>
             <h2 className="display" style={{ fontSize: '32px', marginBottom: '24px' }}>Class Notes</h2>
             
-            {communityNotes.length > 0 ? (
+            {notesList.length > 0 ? (
               <ul style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-                {communityNotes.map((note) => (
+                {notesList.map((note) => (
                   <li key={note.id} style={{ padding: '16px', background: 'var(--paper)', border: '2px solid var(--ink)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                     <div>
                       <span style={{ fontFamily: 'var(--mono)', fontSize: '10px', color: 'var(--saffron-deep)' }}>
@@ -213,6 +221,18 @@ export default function ResourceTabs({ subject }: { subject: Subject }) {
           <div>
             <h2 className="display" style={{ fontSize: '32px', marginBottom: '24px' }}>Past Papers</h2>
             <p className="lead" style={{ marginTop: 0 }}>What they asked last time (they're not creative).</p>
+            
+            {pastPapersList.length > 0 && (
+              <ul style={{ display: 'flex', flexDirection: 'column', gap: '16px', marginTop: '32px', marginBottom: '32px' }}>
+                {pastPapersList.map((paper) => (
+                  <li key={paper.id} style={{ padding: '16px', background: 'var(--paper)', border: '2px solid var(--ink)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <p style={{ fontFamily: 'var(--sans)', fontWeight: 600, margin: 0, wordBreak: 'break-all' }}>{paper.file_name}</p>
+                    <a href={paper.file_url} target="_blank" rel="noopener noreferrer" className="btn-primary" style={{ padding: '4px 12px', fontSize: '12px' }}>Download</a>
+                  </li>
+                ))}
+              </ul>
+            )}
+
             <ul style={{ display: 'flex', flexDirection: 'column', gap: '16px', marginTop: '32px' }}>
               {subject.practiceTopics.map((pt, idx) => (
                 <li key={idx} style={{ padding: '16px', background: 'var(--paper)', border: '2px solid var(--ink)' }}>
@@ -227,6 +247,18 @@ export default function ResourceTabs({ subject }: { subject: Subject }) {
         {activeTab === 'Lab / Practicals' && (
           <div>
             <h2 className="display" style={{ fontSize: '32px', marginBottom: '24px' }}>Lab Practicals</h2>
+            
+            {labsList.length > 0 && (
+              <ul style={{ display: 'flex', flexDirection: 'column', gap: '16px', marginBottom: '32px' }}>
+                {labsList.map((lab) => (
+                  <li key={lab.id} style={{ padding: '16px', background: 'var(--paper)', border: '2px solid var(--ink)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <p style={{ fontFamily: 'var(--sans)', fontWeight: 600, margin: 0, wordBreak: 'break-all' }}>{lab.file_name}</p>
+                    <a href={lab.file_url} target="_blank" rel="noopener noreferrer" className="btn-primary" style={{ padding: '4px 12px', fontSize: '12px' }}>Download</a>
+                  </li>
+                ))}
+              </ul>
+            )}
+
             {subject.labs.length > 0 ? (
               <ol style={{ paddingLeft: '24px', fontFamily: 'var(--sans)', display: 'flex', flexDirection: 'column', gap: '12px' }}>
                 {subject.labs.map((lab, idx) => (
@@ -234,7 +266,7 @@ export default function ResourceTabs({ subject }: { subject: Subject }) {
                 ))}
               </ol>
             ) : (
-              <p className="lead" style={{ marginTop: 0 }}>No labs for this subject. Enjoy the free time.</p>
+              <p className="lead" style={{ marginTop: 0 }}>No official labs for this subject. Enjoy the free time.</p>
             )}
           </div>
         )}
@@ -242,6 +274,18 @@ export default function ResourceTabs({ subject }: { subject: Subject }) {
         {activeTab === 'Projects' && (
           <div>
             <h2 className="display" style={{ fontSize: '32px', marginBottom: '24px' }}>Project Ideas</h2>
+            
+            {projectsList.length > 0 && (
+              <ul style={{ display: 'flex', flexDirection: 'column', gap: '16px', marginBottom: '32px' }}>
+                {projectsList.map((proj) => (
+                  <li key={proj.id} style={{ padding: '16px', background: 'var(--paper)', border: '2px solid var(--ink)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <p style={{ fontFamily: 'var(--sans)', fontWeight: 600, margin: 0, wordBreak: 'break-all' }}>{proj.file_name}</p>
+                    <a href={proj.file_url} target="_blank" rel="noopener noreferrer" className="btn-primary" style={{ padding: '4px 12px', fontSize: '12px' }}>Download</a>
+                  </li>
+                ))}
+              </ul>
+            )}
+
             {subject.projects.length > 0 ? (
               <ul style={{ listStyle: 'square', paddingLeft: '24px', fontFamily: 'var(--sans)', display: 'flex', flexDirection: 'column', gap: '12px' }}>
                 {subject.projects.map((proj, idx) => (
@@ -258,19 +302,53 @@ export default function ResourceTabs({ subject }: { subject: Subject }) {
           <div>
             <h2 className="display" style={{ fontSize: '32px', marginBottom: '24px' }}>Cheat Sheets</h2>
             <p className="lead" style={{ marginTop: 0 }}>Everything, one page, zero shame.</p>
-            <ul style={{ display: 'flex', flexDirection: 'column', gap: '16px', marginTop: '32px' }}>
-              {subject.cheatSheets.map((cs, idx) => (
-                <li key={idx} style={{ padding: '16px', background: 'var(--saffron)', color: 'var(--paper)', border: '3px solid var(--ink)', fontWeight: 700, fontFamily: 'var(--sans)' }}>
-                  {cs}
-                </li>
-              ))}
-            </ul>
+            
+            {cheatSheetsList.length > 0 ? (
+              <ul style={{ display: 'flex', flexDirection: 'column', gap: '16px', marginTop: '32px' }}>
+                {cheatSheetsList.map((cs) => (
+                  <li key={cs.id} style={{ padding: '16px', background: 'var(--saffron)', color: 'var(--paper)', border: '3px solid var(--ink)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <p style={{ fontFamily: 'var(--sans)', fontWeight: 700, margin: 0, wordBreak: 'break-all' }}>{cs.file_name}</p>
+                    <a href={cs.file_url} target="_blank" rel="noopener noreferrer" style={{
+                      background: 'var(--paper)',
+                      color: 'var(--ink)',
+                      padding: '6px 12px',
+                      fontFamily: 'var(--mono)',
+                      fontSize: '12px',
+                      fontWeight: 700,
+                      textTransform: 'uppercase',
+                      textDecoration: 'none',
+                      border: '2px solid var(--ink)'
+                    }}>Open</a>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <ul style={{ display: 'flex', flexDirection: 'column', gap: '16px', marginTop: '32px' }}>
+                {subject.cheatSheets.map((cs, idx) => (
+                  <li key={idx} style={{ padding: '16px', background: 'var(--saffron)', color: 'var(--paper)', border: '3px solid var(--ink)', fontWeight: 700, fontFamily: 'var(--sans)' }}>
+                    {cs}
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
         )}
 
         {activeTab === 'Books' && (
           <div>
             <h2 className="display" style={{ fontSize: '32px', marginBottom: '24px' }}>Books & References</h2>
+            
+            {booksList.length > 0 && (
+              <ul style={{ display: 'flex', flexDirection: 'column', gap: '16px', marginBottom: '32px' }}>
+                {booksList.map((book) => (
+                  <li key={book.id} style={{ padding: '16px', background: 'var(--paper)', border: '2px solid var(--ink)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <p style={{ fontFamily: 'var(--sans)', fontWeight: 600, margin: 0, wordBreak: 'break-all' }}>{book.file_name}</p>
+                    <a href={book.file_url} target="_blank" rel="noopener noreferrer" className="btn-primary" style={{ padding: '4px 12px', fontSize: '12px' }}>Download</a>
+                  </li>
+                ))}
+              </ul>
+            )}
+
             <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
               {subject.books.map((book, idx) => (
                 <div key={idx} style={{ padding: '24px', background: 'var(--paper)', border: '2px solid var(--ink)' }}>
