@@ -61,6 +61,36 @@ export default function AdminTerminal() {
   const [logs, setLogs] = useState<string[]>(["root@semesterhub:~# ENTER 4-DIGIT SECURITY PIN..."]);
   const [failedAttempts, setFailedAttempts] = useState(0);
   const [isLockedOut, setIsLockedOut] = useState(false);
+  const [lockoutTimeLeft, setLockoutTimeLeft] = useState(0);
+
+  React.useEffect(() => {
+    const checkLockout = () => {
+      const lockoutTime = localStorage.getItem('lockout_time');
+      if (lockoutTime) {
+        const timePassed = Date.now() - parseInt(lockoutTime);
+        const TWO_MINUTES = 2 * 60 * 1000;
+        if (timePassed < TWO_MINUTES) {
+          setIsLockedOut(true);
+          setLockoutTimeLeft(Math.ceil((TWO_MINUTES - timePassed) / 1000));
+        } else {
+          localStorage.removeItem('lockout_time');
+          setIsLockedOut(false);
+        }
+      }
+    };
+    checkLockout();
+    const interval = setInterval(checkLockout, 1000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const triggerLockout = () => {
+    setIsLockedOut(true);
+    localStorage.setItem('lockout_time', Date.now().toString());
+    fetch('/api/log-visitor', {
+      method: 'POST',
+      body: JSON.stringify({ pathname: '/admin/INTRUSION_ATTEMPT' })
+    });
+  };
 
   const handlePinSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -77,14 +107,10 @@ export default function AdminTerminal() {
       const newAttempts = failedAttempts + 1;
       setFailedAttempts(newAttempts);
       setUiStatus('ERROR');
-      setLogs(prev => [...prev, "root@semesterhub:~# ERROR: Invalid PIN."]);
+      setLogs(prev => [...prev, `root@semesterhub:~# ERROR: Invalid PIN. Attempt ${newAttempts}/3.`]);
       
       if (newAttempts >= 3) {
-        setIsLockedOut(true);
-        fetch('/api/log-visitor', {
-          method: 'POST',
-          body: JSON.stringify({ pathname: '/admin/INTRUSION_ATTEMPT' })
-        });
+        triggerLockout();
       }
 
       setTimeout(() => {
@@ -103,8 +129,19 @@ export default function AdminTerminal() {
         router.push('/admin/dashboard');
       }, 500);
     } else {
-      setLogs(prev => [...prev, "root@semesterhub:~# ERROR: Invalid credentials. Intrusion logged."]);
+      const newAttempts = failedAttempts + 1;
+      setFailedAttempts(newAttempts);
+      setUiStatus('ERROR');
+      setLogs(prev => [...prev, `root@semesterhub:~# ERROR: Invalid credentials. Attempt ${newAttempts}/3.`]);
       setPassword("");
+      
+      if (newAttempts >= 3) {
+        triggerLockout();
+      }
+
+      setTimeout(() => {
+        setUiStatus('IDLE');
+      }, 500);
     }
   };
 
@@ -115,7 +152,7 @@ export default function AdminTerminal() {
         top: 0, left: 0, right: 0, bottom: 0,
         backgroundColor: '#000',
         color: '#0f0',
-        fontFamily: 'monospace',
+        fontFamily: 'var(--mono)',
         fontSize: '14px',
         overflow: 'hidden',
         zIndex: 9999,
@@ -126,17 +163,22 @@ export default function AdminTerminal() {
         <MatrixBackground />
         <div style={{
           position: 'relative',
-          backgroundColor: '#f00',
-          color: '#fff',
+          backgroundColor: 'var(--blood)',
+          color: 'var(--paper)',
           padding: '40px',
-          border: '4px solid #fff',
+          border: '4px solid var(--paper)',
           textAlign: 'center',
           zIndex: 10000,
-          boxShadow: '0 0 50px #f00'
+          boxShadow: '0 0 50px var(--blood)'
         }}>
-          <h1 style={{ fontSize: '48px', margin: 0, textTransform: 'uppercase', fontFamily: 'var(--bowlby)' }}>Intrusion Detected</h1>
-          <p style={{ fontSize: '24px', fontWeight: 'bold' }}>YOUR IP HAS BEEN RECORDED AND FORWARDED TO THE ADMIN.</p>
-          <p>This incident has been permanently logged.</p>
+          <h1 style={{ fontSize: '48px', margin: 0, textTransform: 'uppercase', fontFamily: 'var(--display)' }}>Intrusion Detected</h1>
+          <p style={{ fontSize: '24px', fontWeight: 'bold', fontFamily: 'var(--mono)' }}>YOUR IP HAS BEEN RECORDED AND FORWARDED TO THE ADMIN.</p>
+          <p style={{ fontFamily: 'var(--mono)' }}>This incident has been permanently logged.</p>
+          {lockoutTimeLeft > 0 && (
+            <p style={{ fontFamily: 'var(--mono)', marginTop: '20px', fontSize: '18px', fontWeight: 'bold', backgroundColor: 'var(--ink)', color: 'var(--paper)', padding: '10px' }}>
+              TERMINAL LOCKED FOR: {Math.floor(lockoutTimeLeft / 60)}:{(lockoutTimeLeft % 60).toString().padStart(2, '0')}
+            </p>
+          )}
         </div>
       </div>
     );
