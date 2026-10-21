@@ -4,7 +4,7 @@
 
 <br/>
 
-### `// YOUR ENTIRE SEMESTER. ONE BRUTAL HUB.`
+### `// YOUR ENTIRE SEMESTER. ONE BRUTAL HUB `
 
 Syllabi, past papers, lab practicals, and community notes for the **Shoolini ByteXL Batch 2025–29** — slammed into one loud, blocky, no-blur portal.
 
