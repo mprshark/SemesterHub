@@ -317,7 +317,7 @@ Then open a PR. Keep it Neobrutalist — thick borders, hard shadows, zero blur,
 
 ---
 
-## License
+## Licenses
 
 Distributed under the **MIT License** — do basically anything, just keep the copyright notice. Drop a `LICENSE` file in the root if you haven't yet.
 
